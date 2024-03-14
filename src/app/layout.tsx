@@ -3,6 +3,8 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { Button } from "./_components/ui/button";
+import Logo from "./_components/ui/logo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,9 +24,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
+      <body className={`font-poppins ${inter.variable}`}>
         <TRPCReactProvider>{children}</TRPCReactProvider>
+        <div className="fixed bottom-0 right-0 m-4">
+          <ChatBot />
+        </div>
       </body>
     </html>
   );
 }
+
+const ChatBot = () => {
+  return (
+    <div className="flex">
+      <div className=" mr-3 flex items-center justify-center">
+        <Button variant="help">¿Necesitás ayuda?</Button>
+      </div>
+      <div className=" sh adow flex items-center justify-center rounded-xl shadow-md">
+        <div className="w-6 ">
+          <Logo type="iso" alt="ISO Logo" />
+        </div>
+      </div>
+    </div>
+  );
+};

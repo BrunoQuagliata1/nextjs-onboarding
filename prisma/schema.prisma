@@ -54,16 +54,18 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String    @default(autoincrement()) @id
+    email         String    @unique
+    password      String    @db.Text
     name          String?
-    email         String?   @unique
-    password      String?   @db.Text
+    surname       String?
+    companyName   String?
     emailVerified DateTime?
-    image         String?
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
 }
+
 
 model VerificationToken {
     identifier String

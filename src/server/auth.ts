@@ -6,10 +6,14 @@ import {
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
-
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 import { env } from "~/env";
 import { db } from "~/server/db";
+
+const prisma = new PrismaClient();
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -52,6 +56,34 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+        },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, req) {
+        if (!credentials) return null;
+        const { email, password } = credentials;
+
+        try {
+          const user = await prisma.user.findUnique({
+            where: { email },
+          });
+
+          if (user && bcrypt.compareSync(password, user.password as string)) {
+            return { id: user.id, name: user.name, email: user.email };
+          }
+          return user;
+        } catch (error) {
+          console.error("Error logging in user:", error);
+          return null;
+        }
+      },
     }),
     /**
      * ...add more providers here.

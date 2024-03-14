@@ -52,6 +52,13 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        gray: {
+          400: '#B3B3B3',
+        },
+        blue: {
+          600: '#0F58B7',
+          700: '#0a3c7a',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,6 +78,34 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+      },
+      fontSize: {
+        // Base font sizes
+        'h1-desktop': ['70px', '130%'], // 70px font size with 130% line-height
+        'h1-mobile': ['36px', '130%'],
+        'h2': ['60px', { lineHeight: '130%', letterSpacing: '-1%' }],
+        'h3': ['48px', '130%'], // Assuming 130% line-height for consistency
+        'h4': ['35px', '130%'], // Assuming 130% line-height for consistency
+        'h5': ['30px', '130%'], // Assuming 130% line-height for consistency
+        'h6': ['25px', '130%'], // Assuming 130% line-height for consistency
+        'button': ['20px', '130%'], // Assuming 130% line-height for consistency
+        'text': ['18px', '130%'], // Assuming 130% line-height for consistency
+        'bold-text': ['16px', '130%'], // Assuming 130% line-height for consistency
+        'small-text': ['14px', '130%'], // Assuming 130% line-height for consistency
+        'tiny-text': ['12px', '130%'], // Assuming 130% line-height for consistency
+      },
+      letterSpacing: {
+        tightest: '-1%', // Custom value, adjust based on requirements
+      },
+      // If specific leading values needed, define them here
+      lineHeight: {
+        custom: '130%', // Example custom line height
+      },
+      boxShadow: {
+        custom: '2px 2px 10px rgba(0, 0, 0, 0.25)',
       },
     },
   },

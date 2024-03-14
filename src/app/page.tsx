@@ -1,90 +1,141 @@
-import { unstable_noStore as noStore } from "next/cache";
+import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 import Link from "next/link";
-
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import { Input } from "./_components/ui/input";
+import { Checkbox } from "./_components/ui/checkbox";
+import { Button, buttonVariants } from "./_components/ui/button";
+import Logo from "./_components/ui/logo";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
+import Image from "next/image";
+import { z } from "zod";
+import { signIn } from "next-auth/react";
+
+const prisma = new PrismaClient();
 
 export default async function Home() {
-  noStore();
   const hello = await api.post.hello.query({ text: "from tRPC" });
   const session = await getServerAuthSession();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
-        <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
-            {hello ? hello.greeting : "Loading tRPC query..."}
-          </p>
-
-          <div className="flex flex-col items-center justify-center gap-4">
-            <p className="text-center text-2xl text-white">
-              {session && <span>Logged in as {session.user?.name}</span>}
-            </p>
-            <p className="text-center text-2xl text-white">
-              ¡Hola, otra vez!
-            </p>
-            <p className="text-center text-2xl text-white">
-              Por favor, confirma tu información para ingresar a Plan IT.
-            </p>
-              <Link
-                href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-            >
-              {session ? "Sign out" : "Sign in"}
-            </Link>
-          </div>
-        </div>
-
-        <CrudShowcase />
+    <main className="flex h-screen ">
+      <div className="flex w-1/2 items-center justify-center bg-gradient-to-br from-[#0F58B7] to-[#62D9FF]">
+        <Banner />
       </div>
+      {session ? (
+        <div>Hola</div>
+      ) : (
+        <div className="flex w-1/2 flex-col items-center justify-center">
+          <SignIn />
+        </div>
+      )}
     </main>
   );
 }
 
-async function CrudShowcase() {
-  const session = await getServerAuthSession();
-  if (!session?.user) return null;
-
-  const latestPost = await api.post.getLatest.query();
-
+async function Banner() {
   return (
-    <div className="w-full max-w-xs">
-      {latestPost ? (
-        <p className="truncate">Your most recent post: {latestPost.name}</p>
-      ) : (
-        <p>You have no posts yet.</p>
-      )}
-
-      <CreatePost />
+    <div className="flex max-h-screen min-h-screen w-full flex-col items-center justify-between">
+      <div className="mt-32 ">
+        <div className="w-40">
+          <Logo type="secondary" alt="secondary Logo" />
+        </div>
+        <h1 className="mb-8 w-96 text-3xl font-semibold leading-[108%] -tracking-[1px] text-white">
+          Comienza a simplificar tus acciones, aquí.
+        </h1>
+        <p className="w-96 text-lg font-normal leading-[108%] -tracking-[1px] text-white">
+          En nuestra plataforma web vas a encontrar todo lo que estás buscando.
+        </p>
+      </div>
+      <div className="absolute !bottom-0 !top-auto -left-14 !h-[40%] !w-[40%]">
+        <Image src="/banner/banner.svg" layout="fill" alt="banner" />
+      </div>
     </div>
+  );
+}
+
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
+async function SignIn() {
+  async function SignInUser(formData: FormData) {
+    "use server";
+
+    const formDataObj = Object.fromEntries(formData.entries());
+
+    try {
+      const { email, password } = loginSchema.parse(formDataObj);
+      const user = await prisma.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+
+      if (!user || !bcrypt.compareSync(password, user.password as string)) {
+        throw new Error("Invalid login credentials.");
+      }
+      revalidatePath;
+      console.log("loggeo?", user);
+    } catch (error) {
+      console.error("Error logging in user:", error);
+      throw new Error("Error logging in user");
+    }
+  }
+
+  const session = await getServerAuthSession();
+  console.log("agarro la session?", session);
+  // if (session?.user) return null;
+  return (
+    <form action={SignInUser}>
+      <div className="flex w-[100%] flex-col items-center gap-4">
+        <div>
+          <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
+            ¡Hola, otra vez!
+          </h4>
+          <p className="mb-10 font-poppins font-normal text-black">
+            Por favor, confirma tu información para ingresar a Plan IT.
+          </p>
+        </div>
+        <div>
+          <Input
+            className="mb-4 "
+            type="email"
+            placeholder="Email"
+            name="email"
+          />
+          <Input
+            className="mb-4"
+            type="password"
+            placeholder="Contraseña"
+            name="password"
+          />
+          <div className="mb-10 flex space-x-2">
+            <Checkbox id="terms" />
+            <label
+              htmlFor="terms"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Recordar mi información
+            </label>
+          </div>
+        </div>
+        <Button className={buttonVariants({ variant: "primary" })}>
+          INICIAR SESIÓN
+        </Button>
+        <div className="columns-1 flex-col text-center font-poppins leading-[108%] text-gray-400">
+          <p>No tienes una cuenta aún?</p>
+          <a
+            href="/signup"
+            className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
+          >
+            Registrate acá papaaa
+          </a>
+        </div>
+      </div>
+    </form>
   );
 }
