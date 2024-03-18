@@ -44,6 +44,7 @@ declare module "next-auth" {
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, user }) => ({
+      strategy: "jwt",
       ...session,
       user: {
         ...session.user,
@@ -52,6 +53,9 @@ export const authOptions: NextAuthOptions = {
     }),
   },
   adapter: PrismaAdapter(db) as Adapter,
+  pages: {
+    signIn: "/",
+  },
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
@@ -75,10 +79,16 @@ export const authOptions: NextAuthOptions = {
             where: { email },
           });
 
-          if (user && bcrypt.compareSync(password, user.password as string)) {
-            return { id: user.id, name: user.name, email: user.email };
-          }
-          return user;
+          console.log("encontro el user?", user);
+          console.log(user);
+          console.log(
+            "comparo",
+            bcrypt.compareSync(password, user?.password as string),
+          );
+
+          return user && bcrypt.compareSync(password, user.password as string)
+            ? user
+            : null;
         } catch (error) {
           console.error("Error logging in user:", error);
           return null;

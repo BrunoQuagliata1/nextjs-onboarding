@@ -1,21 +1,19 @@
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
-import Link from "next/link";
-import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import Image from "next/image";
 import { Button, buttonVariants } from "../_components/ui/button";
 import { Input } from "../_components/ui/input";
-import Logo from "../_components/ui/logo";
-import { string, z } from "zod";
+import { z } from "zod";
+import Banner from "../_components/banner";
 
 const prisma = new PrismaClient();
 
 export default async function SignUp() {
   const hello = await api.post.hello.query({ text: "from tRPC" });
   const session = await getServerAuthSession();
+
+  console.log("session", session);
 
   return (
     <main className="flex h-screen ">
@@ -26,27 +24,6 @@ export default async function SignUp() {
         <SignIn />
       </div>
     </main>
-  );
-}
-
-async function Banner() {
-  return (
-    <div className="flex max-h-screen min-h-screen w-full flex-col items-center justify-between">
-      <div className="mt-32 ">
-        <div className="w-40">
-          <Logo type="secondary" alt="secondary Logo" />
-        </div>
-        <h1 className="mb-8 w-96 text-3xl font-semibold leading-[108%] -tracking-[1px] text-white">
-          Comienza a simplificar tus acciones, aquí.
-        </h1>
-        <p className="w-96 text-lg font-normal leading-[108%] -tracking-[1px] text-white">
-          En nuestra plataforma web vas a encontrar todo lo que estás buscando.
-        </p>
-      </div>
-      <div className="absolute !bottom-0 !top-auto -left-14 !h-[40%] !w-[40%]">
-        <Image src="/banner/banner.svg" layout="fill" alt="banner" />
-      </div>
-    </div>
   );
 }
 
@@ -100,7 +77,7 @@ async function SignIn() {
           <p className="mb-10 font-poppins font-normal text-gray-500">
             ¿Ya tenés una cuenta?{" "}
             <a
-              href="/"
+              href="/api/auth/signin"
               className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
             >
               Inicia sesión aquí.

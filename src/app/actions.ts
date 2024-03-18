@@ -1,28 +1,39 @@
 "use server";
 
 import { z } from "zod";
-import { useState } from "react";
-import bcrypt from "bcrypt";
-import { PrismaClient } from "@prisma/client";
+import { signIn } from "next-auth/react";
+import { revalidatePath } from "next/cache";
 
-const schema = z.object({
-  email: z.string({
-    invalid_type_error: "Invalid Email",
-  }),
-  password: z.string({
-    invalid_type_error: "Invalid Password",
-  }),
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
 });
 
-export default async function createUser(formData: FormData) {
-  const validatedFields = schema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-  });
+async function SignInUser(formData: FormData) {
+  const formDataObj = Object.fromEntries(formData.entries());
 
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
+  const { email, password } = loginSchema.parse(formDataObj);
+
+  console.log("email passowrd", email, password);
+
+  try {
+    const result = await signIn("credentials", {
+      email,
+      password,
+    });
+
+    console.log("anduvo esto?", result);
+
+    if (result?.error) {
+      console.error(result.error);
+      return;
+    } else {
+      console.log("Success");
+      revalidatePath("/");
+    }
+  } catch (error) {
+    console.error("Error logging in user:", error);
   }
 }
+
+export default SignInUser;

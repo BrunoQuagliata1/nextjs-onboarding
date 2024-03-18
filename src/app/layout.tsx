@@ -3,8 +3,7 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import { Button } from "./_components/ui/button";
-import Logo from "./_components/ui/logo";
+import ChatBot from "./_components/chatbot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,18 +32,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-const ChatBot = () => {
-  return (
-    <div className="flex">
-      <div className=" mr-3 flex items-center justify-center">
-        <Button variant="help">¿Necesitás ayuda?</Button>
-      </div>
-      <div className=" sh adow flex items-center justify-center rounded-xl shadow-md">
-        <div className="w-6 ">
-          <Logo type="iso" alt="ISO Logo" />
-        </div>
-      </div>
-    </div>
-  );
-};
