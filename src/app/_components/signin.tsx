@@ -13,16 +13,12 @@ const SignIn = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log("Submitting form with email and password:", email, password);
 
     const result = await signIn("credentials", {
       redirect: false,
       email,
       password,
     });
-
-    console.log("signIn result:", result);
-    console.log("user?", email);
 
     if (result?.error) {
       console.error("Error signing in:", result);

@@ -1,5 +1,5 @@
 import Logo from "./ui/logo";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 async function Banner() {
   return (
@@ -16,7 +16,7 @@ async function Banner() {
         </p>
       </div>
       <div className="absolute !bottom-0 !top-auto -left-14 !h-[40%] !w-[40%]">
-        <Image src="/banner/banner.svg" layout="fill" alt="banner" />
+        <Image src="/banner/banner.svg" priority layout="fill" alt="banner" />
       </div>
     </div>
   );

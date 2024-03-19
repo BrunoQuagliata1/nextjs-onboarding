@@ -1,14 +1,17 @@
-// components/Navbar.tsx
+"use client";
 import React from "react";
-import Image from "next/image";
+// import Image from "next/legacy/image";
 import Logo from "./ui/logo";
+import Link from "next/link";
 
 const NavBar = () => {
   return (
     <div className="left-0 top-0 w-full">
       <div className="flex h-36 items-center justify-between px-8">
         <div className="w-20">
-          <Logo type="primary" alt="Primary Logo" />
+          <Link href="/">
+            <Logo type="primary" alt="Primary Logo" />
+          </Link>
         </div>
         <div className="directi flex-col">
           <div className="mb-4 hidden gap-10 md:flex">

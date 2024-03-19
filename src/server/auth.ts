@@ -7,13 +7,15 @@ import {
 import { type Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
-
 import { env } from "~/env";
 import { db } from "~/server/db";
 
-const prisma = new PrismaClient();
+import {
+  findUserByEmail,
+  validatePassword,
+  validateCredentials,
+  createSession,
+} from "./authUtils";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -25,15 +27,13 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
-      // ...other properties
-      // role: UserRole;
     } & DefaultSession["user"];
+    sessionToken?: string;
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+    sessionToken?: string;
+  }
 }
 
 /**
@@ -42,15 +42,23 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  secret: env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    session: ({ session, user }) => ({
-      strategy: "jwt",
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    async jwt({ token, user }) {
+      if (user) {
+        token.sessionToken = user.sessionToken;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token.sessionToken) {
+        session.sessionToken = token.sessionToken.toString();
+      }
+      return session;
+    },
   },
   adapter: PrismaAdapter(db) as Adapter,
   pages: {
@@ -72,25 +80,17 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials) return null;
-        const { email, password } = credentials;
-
-        try {
-          const user = await prisma.user.findUnique({
-            where: { email },
-          });
-
-          console.log("encontro el user?", user);
-          console.log(user);
-          console.log(
-            "comparo",
-            bcrypt.compareSync(password, user?.password as string),
-          );
-
-          return user && bcrypt.compareSync(password, user.password as string)
-            ? user
-            : null;
-        } catch (error) {
-          console.error("Error logging in user:", error);
+        const { email, password } = validateCredentials(credentials);
+        const user = await findUserByEmail(email);
+        if (user && (await validatePassword(user.password, password))) {
+          const session = await createSession(user.id);
+          return {
+            id: user.id,
+            email: user.email,
+            sessionToken: session.sessionToken,
+          };
+        } else {
+          throw new Error("Credentials are invalid");
           return null;
         }
       },

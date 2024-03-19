@@ -6,21 +6,16 @@ import { useSession } from "next-auth/react";
 
 export default async function Home() {
   const session = await getServerAuthSession();
-
-  console.log("sesssssion", session);
+  session ? console.log("loggeo!", session) : console.log("No anduvo mostro");
 
   return (
     <main className="flex h-screen ">
       <div className="flex w-1/2 items-center justify-center bg-gradient-to-br from-[#0F58B7] to-[#62D9FF]">
         <Banner />
       </div>
-      {session ? (
-        <div>Hola</div>
-      ) : (
-        <div className="flex w-1/2 flex-col items-center justify-center">
-          <SignIn />
-        </div>
-      )}
+      <div className="flex w-1/2 flex-col items-center justify-center">
+        <SignIn />
+      </div>
     </main>
   );
 }

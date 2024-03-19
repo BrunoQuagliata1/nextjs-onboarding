@@ -64,6 +64,17 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    sessionToken  String?
+}
+
+model Product {
+    id            Int      @id @default(autoincrement())
+    name          String
+    description   String?
+    calification  String?
+    personalize   String[]
+    price         Int
+    restaurant    String?
 }
 
 
