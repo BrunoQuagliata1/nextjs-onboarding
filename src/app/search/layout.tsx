@@ -1,4 +1,4 @@
-import NavBar from "../_components/navbar";
+import { NavBar } from "../_components/navbar";
 
 export default function SearchLayout({
   children,
@@ -6,7 +6,7 @@ export default function SearchLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section>
+    <section className="m-0 box-border w-full p-0">
       <NavBar />
       {children}
     </section>

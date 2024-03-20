@@ -17,7 +17,7 @@ const GiftCard: React.FC<GiftCardProps> = ({
   restaurant,
 }) => {
   return (
-    <div className="relative flex h-[290px] w-[223px] flex-col items-start rounded-sm bg-white p-0">
+    <div className="relative flex h-72 w-56 flex-col items-start rounded-sm bg-white p-0">
       <div className="absolute left-0 top-0 h-[60.69%] w-full rounded-t-sm bg-gray-200 bg-[url('/img/flipa-box.svg')]"></div>
       <div className="left-5.38% right-5.5% absolute top-[65.52%] flex w-full flex-row items-center justify-between p-0">
         <h3 className="font-poppins text-lg font-medium leading-[108%] text-black">

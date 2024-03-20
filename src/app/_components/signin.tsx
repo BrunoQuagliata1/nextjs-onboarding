@@ -28,55 +28,56 @@ const SignIn = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex w-[100%] flex-col items-center gap-4">
-        <div>
-          <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
-            ¡Hola, otra vez!
-          </h4>
-          <p className="mb-10 font-poppins font-normal text-black">
-            Por favor, confirma tu información para ingresar a Plan IT.
-          </p>
-        </div>
-        <div>
-          <Input
-            className="mb-4 "
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            className="mb-4"
-            type="password"
-            placeholder="Contraseña"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div className="mb-10 flex space-x-2">
-            <Checkbox id="terms" />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Recordar mi información
-            </label>
-          </div>
-        </div>
-        <Button className={buttonVariants({ variant: "primary" })}>
-          INICIAR SESIÓN
-        </Button>
-        <div className="columns-1 flex-col text-center font-poppins leading-[108%] text-gray-400">
-          <p>No tienes una cuenta aún?</p>
-          <a
-            href="/signup"
-            className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
+    <form
+      onSubmit={handleSubmit}
+      className=" mx-12 flex w-full flex-col items-center gap-4 max-sm:mx-4 max-sm:w-[93%]"
+    >
+      <div className="mx-2 w-full">
+        <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
+          ¡Hola, otra vez!
+        </h4>
+        <p className="mb-10 font-poppins font-normal text-black">
+          Por favor, confirma tu información para ingresar a Plan IT.
+        </p>
+      </div>
+      <div className="mx-2 w-full">
+        <Input
+          className="mx-2 mb-4 w-full"
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          className="mb-4"
+          type="password"
+          placeholder="Contraseña"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div className="mb-10 flex space-x-2">
+          <Checkbox id="terms" />
+          <label
+            htmlFor="terms"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
-            Registrate acá papaaa
-          </a>
+            Recordar mi información
+          </label>
         </div>
+      </div>
+      <Button className={buttonVariants({ variant: "primary" })}>
+        INICIAR SESIÓN
+      </Button>
+      <div className="columns-1 flex-col text-center font-poppins leading-[108%] text-gray-400">
+        <p>No tienes una cuenta aún?</p>
+        <a
+          href="/signup"
+          className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
+        >
+          Registrate acá papaaa
+        </a>
       </div>
     </form>
   );

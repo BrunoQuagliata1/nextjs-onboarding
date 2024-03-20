@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import ChatBot from "./_components/chatbot";
+import Footer from "./_components/footer";
+import { MobileNavbar } from "./_components/navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,9 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-poppins ${inter.variable}`}>
+        <div className="block lg:hidden">
+          <MobileNavbar />
+        </div>
         <TRPCReactProvider>{children}</TRPCReactProvider>
-        <div className="fixed bottom-0 right-0 m-4">
+        <div className="fixed bottom-0 right-0 m-4 hidden lg:block">
           <ChatBot />
+        </div>
+        {/* Show Footer on smaller screens and hide on larger screens */}
+        <div className="block lg:hidden">
+          <Footer />
         </div>
       </body>
     </html>

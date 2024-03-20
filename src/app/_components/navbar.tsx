@@ -3,6 +3,7 @@ import React from "react";
 // import Image from "next/legacy/image";
 import Logo from "./ui/logo";
 import Link from "next/link";
+import MenuIcon from "./ui/menu";
 
 const NavBar = () => {
   return (
@@ -77,4 +78,20 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+const MobileNavbar = () => {
+  return (
+    <div className="relative w-full">
+      <div className="absolute -left-1 -top-7  z-[-1] h-[32rem] w-full overflow-x-hidden">
+        <div className="absolute -top-60 left-6 h-[24rem] w-full rotate-[10.82deg] transform rounded-[40px] bg-gradient-to-br from-[#0F58B7] to-[#62D9FF]"></div>
+      </div>
+      <div className="mx-5 mt-6 flex items-center justify-between">
+        <div className="w-24">
+          <Logo type="secondary" alt="Secondary Logo" />
+        </div>
+        <MenuIcon />
+      </div>
+    </div>
+  );
+};
+
+export { NavBar, MobileNavbar };

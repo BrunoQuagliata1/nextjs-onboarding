@@ -33,7 +33,7 @@ export default async function Search() {
   // });
 
   return (
-    <main className="m-20 flex h-screen flex-col">
+    <main className="w-[calc(100vw - 10rem)] m-20 flex flex-col max-sm:m-10">
       <div className=" flex  w-60 flex-col gap-3.5">
         <h6 className="text-[20px] font-normal leading-[108%] tracking-tight text-gray-900">
           Regalos
@@ -47,7 +47,7 @@ export default async function Search() {
       </div>
       <NavigationMenuDemo />
       <Suspense fallback={<Skeleton />}>
-        <div className="grid w-full grid-cols-5 flex-row py-4">
+        <div className="grid w-full grid-cols-2 flex-row py-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           <ProductsList />
         </div>
       </Suspense>
