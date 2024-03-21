@@ -78,20 +78,46 @@ const NavBar = () => {
   );
 };
 
-const MobileNavbar = () => {
-  return (
-    <div className="relative w-full">
-      <div className="absolute -left-1 -top-7  z-[-1] h-[32rem] w-full overflow-x-hidden">
-        <div className="absolute -top-60 left-6 h-[24rem] w-full rotate-[10.82deg] transform rounded-[40px] bg-gradient-to-br from-[#0F58B7] to-[#62D9FF]"></div>
-      </div>
-      <div className="mx-5 mt-6 flex items-center justify-between">
-        <div className="w-24">
-          <Logo type="secondary" alt="Secondary Logo" />
+export interface NavBarProps {
+  variant: "search" | "default";
+}
+
+const MobileNavbar = React.forwardRef<HTMLButtonElement, NavBarProps>(
+  ({ variant, ...props }, ref) => {
+    if (variant === "search") {
+      return (
+        <div className="flex w-full flex-col rounded-lg shadow-lg">
+          <div className="mx-5 mt-6 flex items-center justify-between">
+            <div className="w-24">
+              <Logo type="primary" alt="Primary Logo" />
+            </div>
+            <MenuIcon color="black" />
+          </div>
+          <div className="relative mx-5 my-6">
+            <input
+              className="h-9 w-full rounded-full border border-gray-200 bg-gray-100 pl-4 pr-10 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="Buscar"
+            />
+            {/* <SearchIcon className="absolute right-3 top-2.5 h-4 w-4 text-blue-600" /> */}
+          </div>
         </div>
-        <MenuIcon />
+      );
+    }
+
+    return (
+      <div className="relative w-full">
+        <div className="absolute -left-1 -top-7  z-[-1] h-[32rem] w-full overflow-x-hidden">
+          <div className="absolute -top-60 left-6 h-[24rem] w-full rotate-[10.82deg] transform rounded-[40px] bg-gradient-to-br from-[#0F58B7] to-[#62D9FF]"></div>
+        </div>
+        <div className="mx-5 mt-6 flex items-center justify-between">
+          <div className="w-24">
+            <Logo type="secondary" alt="Secondary Logo" />
+          </div>
+          <MenuIcon color="white" />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  },
+);
 
 export { NavBar, MobileNavbar };

@@ -7,16 +7,18 @@ import { Skeleton } from "../_components/ui/skeleton";
 const ProductsList = async () => {
   const products = await api.product.getAll.query();
   return products.map((product) => (
-    <Card
-      key={product.id}
-      name={product.name}
-      description={product.description ?? ""}
-      calification={product.calification ?? ""}
-      personalize={product.personalize.join(", ")}
-      price={product.price}
-      restaurant={product.restaurant ?? ""}
-      // imageUrl={product.imageUrl}
-    />
+    <div className="flex justify-center">
+      <Card
+        key={product.id}
+        name={product.name}
+        description={product.description ?? ""}
+        calification={product.calification ?? ""}
+        personalize={product.personalize.join(", ")}
+        price={product.price}
+        restaurant={product.restaurant ?? ""}
+        // imageUrl={product.imageUrl}
+      />
+    </div>
   ));
 };
 
@@ -34,7 +36,7 @@ export default async function Search() {
 
   return (
     <main className="w-[calc(100vw - 10rem)] m-20 flex flex-col max-sm:m-10">
-      <div className=" flex  w-60 flex-col gap-3.5">
+      <div className=" flex  w-60 flex-col gap-3.5 max-sm:hidden">
         <h6 className="text-[20px] font-normal leading-[108%] tracking-tight text-gray-900">
           Regalos
         </h6>
@@ -45,9 +47,11 @@ export default async function Search() {
           Más de 30 opciones
         </p>
       </div>
-      <NavigationMenuDemo />
+      <div className="max-sm:hidden">
+        <NavigationMenuDemo />
+      </div>
       <Suspense fallback={<Skeleton />}>
-        <div className="grid w-full grid-cols-2 flex-row py-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        <div className="2xl2:grid-cols-6 xl2:grid-cols-5 lg2:grid-cols-4 md2:grid-cols-3 grid aspect-square w-full grid-cols-2 flex-row py-4 sm:grid-cols-2">
           <ProductsList />
         </div>
       </Suspense>

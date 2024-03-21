@@ -10,10 +10,10 @@ export default async function Home() {
 
   return (
     <main className="flex h-screen overflow-hidden">
-      <div className="hidden w-full items-center justify-center bg-gradient-to-br from-[#0F58B7] to-[#62D9FF] lg:flex lg:w-1/2">
+      <div className="hidden w-full items-center justify-center bg-gradient-to-br from-[#0F58B7] to-[#62D9FF] sm:flex sm:w-1/2">
         <Banner />
       </div>
-      <div className="flex w-full items-center justify-center lg:w-1/2">
+      <div className="flex w-full items-center justify-center sm:w-1/2">
         <SignIn />
       </div>
     </main>

@@ -8,7 +8,7 @@ const ChatBot = () => {
         <Button variant="help">¿Necesitás ayuda?</Button>
       </div>
       <div className=" sh adow flex items-center justify-center rounded-xl shadow-md">
-        <div className="w-6 ">
+        <div className="w-14 ">
           <Logo type="iso" alt="ISO Logo" />
         </div>
       </div>

@@ -11,17 +11,14 @@ const prisma = new PrismaClient();
 
 export default async function SignUp() {
   const hello = await api.post.hello.query({ text: "from tRPC" });
-  const session = await getServerAuthSession();
-
-  console.log("session", session);
 
   return (
-    <main className="flex h-screen ">
-      <div className="flex w-1/2 items-center justify-center bg-gradient-to-br from-[#0F58B7] to-[#62D9FF]">
+    <main className="flex h-screen overflow-hidden">
+      <div className="hidden w-full items-center justify-center bg-gradient-to-br from-[#0F58B7] to-[#62D9FF] sm:flex sm:w-1/2">
         <Banner />
       </div>
-      <div className="flex w-1/2 flex-col items-center justify-center">
-        <SignIn />
+      <div className="flex w-full items-center justify-center sm:w-1/2">
+        <SignUp_ />
       </div>
     </main>
   );
@@ -35,7 +32,7 @@ const signUpSchema = z.object({
   companyName: z.string().optional(),
 });
 
-async function SignIn() {
+async function SignUp_() {
   async function signUpUser(formData: FormData) {
     "use server";
 
@@ -64,9 +61,12 @@ async function SignIn() {
 
   const session = await getServerAuthSession();
   return (
-    <form action={signUpUser}>
+    <form
+      action={signUpUser}
+      className=" mx-12 flex w-full flex-col items-center gap-4 max-sm:mx-4 max-sm:w-[93%]"
+    >
       <div className="flex w-[100%] flex-col items-center gap-4">
-        <div>
+        <div className="mx-2 w-full">
           <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
             ¡Bienvenido a Plan IT!
           </h4>
@@ -84,7 +84,7 @@ async function SignIn() {
             </a>
           </p>
         </div>
-        <div>
+        <div className="mx-2 w-full">
           <Input
             className="mb-4 "
             type="name"
