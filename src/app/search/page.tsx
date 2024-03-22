@@ -1,6 +1,6 @@
 import { api } from "~/trpc/server";
 import { NavigationMenuDemo } from "../_components/filter";
-import Card from "../_components/gift-card";
+import GiftCard from "../_components/gift-card";
 import { Suspense } from "react";
 import { Skeleton } from "../_components/ui/skeleton";
 
@@ -8,8 +8,8 @@ const ProductsList = async () => {
   const products = await api.product.getAll.query();
   return products.map((product) => (
     <div className="flex justify-center">
-      <Card
-        key={product.id}
+      <GiftCard
+        id={product.id}
         name={product.name}
         description={product.description ?? ""}
         calification={product.calification ?? ""}

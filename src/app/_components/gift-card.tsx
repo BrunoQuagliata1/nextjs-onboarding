@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 interface GiftCardProps {
+  id: number;
   name: string;
   description?: string;
   calification?: string;
@@ -14,15 +15,16 @@ interface GiftCardProps {
 }
 
 const GiftCard: React.FC<GiftCardProps> = ({
+  id,
   name,
   calification,
   price,
   restaurant,
 }) => {
   return (
-    <Link href={`/search/${name}`}>
+    <Link href={`/search/${name}?id=${id}`}>
       <div className="relative flex h-72 w-56 cursor-pointer flex-col items-start rounded-sm bg-white p-0 shadow-sm">
-        <div className="absolute h-[60.69%] w-full rounded-t-sm bg-[url('/img/flipa-box.svg')]"></div>
+        <div className="absolute h-[60.69%] w-full rounded-t-sm bg-[url('/img/flipa-box.svg')] bg-cover"></div>
         <div className="left-5.38% right-5.5% absolute top-[65.52%] flex w-full flex-row items-center justify-between p-0">
           <h3 className="font-poppins text-lg font-medium leading-[108%] text-black">
             {name}

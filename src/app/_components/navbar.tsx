@@ -17,26 +17,26 @@ const NavBar = () => {
         <div className="directi flex-col">
           <div className="mb-4 hidden gap-10 md:flex">
             <a
-              href="#"
-              className="bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text text-transparent"
+              href="/search"
+              className="bg-custom-gradient bg-clip-text text-transparent"
             >
               Regalos
             </a>
             <a
               href="#"
-              className="bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text text-transparent"
+              className="bg-custom-gradient bg-clip-text text-transparent"
             >
               Catering
             </a>
             <a
               href="#"
-              className="bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text text-transparent"
+              className="bg-custom-gradient bg-clip-text text-transparent"
             >
               Merchandising
             </a>
             <a
               href="#"
-              className="bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text text-transparent"
+              className="bg-custom-gradient bg-clip-text text-transparent"
             >
               Eventos
             </a>

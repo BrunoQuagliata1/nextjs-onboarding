@@ -16,7 +16,7 @@ const buttonVariants = cva(
       variant: {
         // Primary button styles
         primary: [
-          "py-[9.5px] h-[36px] bg-gradient-to-r from-[#0F58B7] to-[#62D9FF]",
+          "py-[9.5px] h-[36px] bg-custom-gradient",
           "text-white text-[16px] leading-[108%] tracking-tighter shadow-lg rounded-md w-full",
         ],
         // Help button styles

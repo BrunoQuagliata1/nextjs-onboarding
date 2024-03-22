@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import ChatBot from "./_components/chatbot";
-import Footer from "./_components/footer";
+import { MobileNavbarFooter } from "./_components/footer";
 import { MobileNavbar } from "./_components/navbar";
 import { usePathname } from "next/navigation";
 
@@ -21,6 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+
+  const isDynamicSearchPath = (pathname: string) => {
+    // Check if pathname starts with /search/ and has more segments after /search/
+    return pathname.startsWith("/search/") && pathname.split("/").length > 2;
+  };
+
   return (
     <html lang="en">
       <body className={`font-poppins ${inter.variable}`}>
@@ -33,10 +39,10 @@ export default function RootLayout({
         </div>
         <TRPCReactProvider>{children}</TRPCReactProvider>
         <div className="fixed bottom-0 right-0 m-4 hidden sm:block">
-          <ChatBot />
+          {isDynamicSearchPath(pathname) ? null : <ChatBot />}
         </div>
         <div className="block sm:hidden">
-          <Footer />
+          <MobileNavbarFooter />
         </div>
       </body>
     </html>

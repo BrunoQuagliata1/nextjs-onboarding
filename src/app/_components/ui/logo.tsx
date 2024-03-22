@@ -5,6 +5,7 @@ const logoPaths = {
   iso: "/logos/iso.svg",
   primary: "/logos/logo-primary.svg",
   secondary: "/logos/logo-secondary.svg",
+  tertiary: "/logos/logo-tertiary.svg",
 };
 
 type LogoProps = {

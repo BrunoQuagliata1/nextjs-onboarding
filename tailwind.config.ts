@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        "custom-gradient":
+          "linear-gradient(46.99deg, #0F58B7 -4.4%, #62D9FF 120.42%)",
+      },
       screens: {
         sm2: "640px",
         md2: "876px",
@@ -62,6 +66,7 @@ const config = {
         gray: {
           custom: "rgba(125, 125, 125, 0.5)",
         },
+        customGray: "rgba(68, 67, 67, 1)",
         blue: {
           600: "#0F58B7",
           700: "#0a3c7a",
