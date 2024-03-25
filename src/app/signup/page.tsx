@@ -1,5 +1,3 @@
-import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { Button, buttonVariants } from "../_components/ui/button";
@@ -10,11 +8,9 @@ import Banner from "../_components/banner";
 const prisma = new PrismaClient();
 
 export default async function SignUp() {
-  const hello = await api.post.hello.query({ text: "from tRPC" });
-
   return (
     <main className="flex h-screen overflow-hidden">
-      <div className="hidden w-full items-center justify-center bg-gradient-to-br from-[#0F58B7] to-[#62D9FF] sm:flex sm:w-1/2">
+      <div className="hidden bg-custom-gradient sm:flex sm:w-1/2">
         <Banner />
       </div>
       <div className="flex w-full items-center justify-center sm:w-1/2">
@@ -59,67 +55,41 @@ async function SignUp_() {
     }
   }
 
-  const session = await getServerAuthSession();
   return (
     <form
       action={signUpUser}
-      className=" mx-12 flex w-full flex-col items-center gap-4 max-sm:mx-4 max-sm:w-[93%]"
+      className="mx-12 flex w-full flex-col items-start gap-4 max-sm:mx-4 max-sm:w-[93%]"
     >
-      <div className="flex w-[100%] flex-col items-center gap-4">
-        <div className="mx-2 w-full">
-          <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
-            ¡Bienvenido a Plan IT!
-          </h4>
-          <p className="mb-10 font-poppins font-normal text-black">
-            Por favor, complete su información personal para crear un usuario
-            propio.
-          </p>
-          <p className="mb-10 font-poppins font-normal text-gray-500">
-            ¿Ya tenés una cuenta?{" "}
-            <a
-              href="/api/auth/signin"
-              className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
-            >
-              Inicia sesión aquí.
-            </a>
-          </p>
-        </div>
-        <div className="mx-2 w-full">
-          <Input
-            className="mb-4 "
-            type="name"
-            placeholder="Nombre"
-            name="name"
-          />
-          <Input
-            className="mb-4"
-            type="surname"
-            placeholder="Apellido"
-            name="surname"
-          />
-          <Input
-            className="mb-4 "
-            type="email"
-            placeholder="Email"
-            name="email"
-          />
-          <Input
-            className="mb-4"
-            type="password"
-            placeholder="Contraseña"
-            name="password"
-          />
-          <Input
-            className="mb-4"
-            type="company-name"
-            placeholder="Nombre de la Empresa"
-            name="companyName"
-          />
-        </div>
-        <Button className={buttonVariants({ variant: "primary" })}>
-          REGISTRARSE
-        </Button>
+      <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
+        ¡Bienvenido a Plan IT!
+      </h4>
+      <p className="mb-10 font-poppins font-normal text-black">
+        Por favor, complete su información personal para crear un usuario
+        propio.
+      </p>
+      <p className="mb-10 font-poppins font-normal text-gray-500">
+        ¿Ya tenés una cuenta?{" "}
+        <a
+          href="/api/auth/signin"
+          className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
+        >
+          Inicia sesión aquí.
+        </a>
+      </p>
+      <div className="mb-5 flex w-full flex-col gap-8">
+        <Input type="name" placeholder="Nombre" name="name" />
+        <Input type="surname" placeholder="Apellido" name="surname" />
+        <Input type="email" placeholder="Email" name="email" />
+        <Input type="password" placeholder="Contraseña" name="password" />
+        <Input
+          type="company-name"
+          placeholder="Nombre de la Empresa"
+          name="companyName"
+        />
       </div>
+      <Button className={buttonVariants({ variant: "primary" })}>
+        REGISTRARSE
+      </Button>
     </form>
   );
 }

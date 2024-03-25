@@ -10,13 +10,14 @@ const logoPaths = {
 type LogoProps = {
   type: keyof typeof logoPaths;
   alt: string;
-  onClick?: React.MouseEventHandler<HTMLImageElement>; // Adding onClick prop
+  width?: number;
+  onClick?: React.MouseEventHandler<HTMLImageElement>;
 };
 
-const Logo: React.FC<LogoProps> = ({ type, alt }) => {
+const Logo: React.FC<LogoProps> = ({ type, alt, width = "w-14" }) => {
   const logoPath = logoPaths[type];
   return (
-    <div className="logo-container">
+    <div className={`logo-container w-${width}`}>
       <Image src={logoPath} priority alt={alt} width={485} height={190} />
     </div>
   );

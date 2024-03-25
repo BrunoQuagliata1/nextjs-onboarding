@@ -1,12 +1,8 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
-import { cn } from "~/lib/utils";
 
 const buttonVariants = cva(
   [
-    // Base styles for all buttons
     "inline-flex items-center justify-center font-poppins font-medium transition ease-in-out duration-150",
     "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-400",
     "disabled:opacity-50 disabled:pointer-events-none",
@@ -14,12 +10,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary button styles
         primary: [
           "py-[9.5px] h-[36px] bg-gradient-to-r from-[#0F58B7] to-[#62D9FF]",
           "text-white text-[16px] leading-[108%] tracking-tighter shadow-lg rounded-md w-full",
         ],
-        // Help button styles
         help: [
           "w-[223px]  h-[32px]",
           "rounded-[10px]",
