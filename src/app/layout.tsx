@@ -3,12 +3,12 @@
 import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
+import { usePathname } from "next/navigation";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import ChatBot from "./_components/chatbot";
 import Footer from "./_components/footer";
 import { MobileNavbar } from "./_components/navbar";
-import { usePathname } from "next/navigation";
 
 const inter = Inter({
   subsets: ["latin"],

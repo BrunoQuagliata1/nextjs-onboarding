@@ -12,7 +12,7 @@ const NavBar = () => {
     <div className="w-full">
       <div className="flex h-36 items-center justify-between px-8">
         <Link href="/">
-          <Logo type="primary" alt="Primary Logo" width={20} />
+          <Logo type="primary" alt="Primary Logo" width={24} />
         </Link>
         <div className="flex-col">
           <div className="mb-4 hidden gap-10 md:flex">
@@ -50,13 +50,11 @@ const NavBar = () => {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <div className="flex items-center">
-            <div className="h-11 w-11 rounded-full bg-gray-300"></div>
-            <div className="ml-2 flex flex-col">
-              <span className="font-medium text-gray-800">Victoria López</span>
-              <div className="flex items-center text-sm text-gray-500">
-                HR Manager
-              </div>
+          <div className="h-11 w-11 rounded-full bg-gray-300"></div>
+          <div className="ml-2 flex flex-col">
+            <span className="font-medium text-gray-800">Victoria López</span>
+            <div className="flex items-center text-sm text-gray-500">
+              HR Manager
             </div>
           </div>
         </div>

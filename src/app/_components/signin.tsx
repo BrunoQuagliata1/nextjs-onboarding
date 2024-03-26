@@ -34,9 +34,8 @@ const SignIn = () => {
         <h4 className="text-2xl font-medium ">¡Hola, otra vez!</h4>
         <p>Por favor, confirma tu información para ingresar a Plan IT.</p>
       </div>
-      <div className="w-full">
+      <div className=" flex w-full flex-col gap-4">
         <Input
-          className="mb-4 w-full"
           type="email"
           placeholder="Email"
           name="email"
@@ -44,14 +43,13 @@ const SignIn = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
-          className="mb-4"
           type="password"
           placeholder="Contraseña"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="mb-10 flex space-x-2">
+        <div className="mb-5 space-x-2">
           <Checkbox id="terms" />
           <label
             htmlFor="terms"

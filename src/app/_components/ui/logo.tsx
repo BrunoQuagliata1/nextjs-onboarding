@@ -14,7 +14,7 @@ type LogoProps = {
   onClick?: React.MouseEventHandler<HTMLImageElement>;
 };
 
-const Logo: React.FC<LogoProps> = ({ type, alt, width = "w-14" }) => {
+const Logo: React.FC<LogoProps> = ({ type, alt, width = "14" }) => {
   const logoPath = logoPaths[type];
   return (
     <div className={`logo-container w-${width}`}>
