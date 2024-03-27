@@ -54,7 +54,7 @@ model Session {
 }
 
 model User {
-    id            String    @default(autoincrement()) @id
+    id            String    @default(cuid()) @id
     email         String    @unique
     password      String    @db.Text
     name          String?
@@ -64,6 +64,17 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    sessionToken  String?
+}
+
+model Product {
+    id            Int      @id @default(autoincrement())
+    name          String
+    description   String?
+    calification  String?
+    personalize   String[]
+    price         Int
+    restaurant    String?
 }
 
 
