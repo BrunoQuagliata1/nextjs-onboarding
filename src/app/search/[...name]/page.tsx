@@ -5,7 +5,7 @@ import { api } from "~/trpc/server";
 export default async function ProductPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }) {
   const id = searchParams.id;
   const product = await api.product.getOne.query({ id: Number(id) });

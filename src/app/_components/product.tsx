@@ -15,7 +15,7 @@ interface Product {
 }
 
 interface ProductProps {
-  product: Product | null;
+  product: Product;
 }
 
 const Product = ({ product }: ProductProps) => {
@@ -48,7 +48,7 @@ const Product = ({ product }: ProductProps) => {
       <div className="md:w-1/2">
         <div className="h-96 w-full rounded-b-lg rounded-t-lg bg-[url('/img/flipa-box.svg')] bg-cover"></div>
         <div className="w-full space-y-4 p-6">
-          <div className="font-poppins text-2xl text-black">Descripción</div>
+          <h2 className="text-2xl">Descripción</h2>
           <div className="text-lg text-gray-700">
             <div>{firstItem}</div>
             <ul className="list-inside list-disc">
@@ -63,34 +63,32 @@ const Product = ({ product }: ProductProps) => {
         <div className="flex flex-col gap-6">
           <div className="flex justify-between">
             <div>
-              <div className="text-customGray font-poppins text-2xl">
-                {restaurant}
-              </div>
-              <div className="bg-custom-gradient bg-clip-text font-poppins text-3xl text-transparent">
+              <h2 className="text-customGray text-2xl">{restaurant}</h2>
+              <h1 className="bg-custom-gradient bg-clip-text text-3xl text-transparent">
                 {name}
-              </div>
+              </h1>
             </div>
-            <div className=" h-6 w-[1.7rem] bg-[url('/card/favorite-product.svg')]"></div>
+            <div className="h-6 w-[1.7rem] bg-[url('/card/favorite-product.svg')]"></div>
           </div>
           <div className="flex items-center gap-7">
             <div className="flex items-center gap-1">
-              <div className=" -mt-[0.15rem] h-4 w-4 bg-[url('/card/star-product.svg')]"></div>
-              <div className="bg-custom-gradient cursor-pointer bg-clip-text text-sm ">
+              <div className="-mt-[0.15rem] h-4 w-4 bg-[url('/card/star-product.svg')]"></div>
+              <p className="cursor-pointer bg-custom-gradient bg-clip-text text-sm">
                 {calification}
-              </div>
+              </p>
             </div>
-            <div className="to-blue-300 bg-clip-text text-sm text-blue-700">
+            <p className="bg-clip-text text-sm text-blue-700">
               Ver calificaciones
-            </div>
+            </p>
           </div>
           <div className="mb-8 flex gap-0">
             <button
               onClick={decreaseQuantity}
-              className="rounded-l-md bg-gray-200 p-2 text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+              className="rounded-l-md bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
             >
               -
             </button>
-            <div className="a \ flex w-12 items-center justify-center border-y border-gray-200 text-center">
+            <div className="flex w-12 items-center justify-center border-y border-gray-200 text-center">
               {quantity}
             </div>
             <button
@@ -102,9 +100,9 @@ const Product = ({ product }: ProductProps) => {
           </div>
         </div>
         <div className="mb-6 space-y-2">
-          <div className="g-clip-text font-poppins text-xl ">
+          <h2 className="g-clip-text font-poppins text-xl ">
             Personaliza tu box
-          </div>
+          </h2>
           {personalize?.map((option, index) => (
             <div key={index} className="flex items-center space-x-2">
               <Switch />
@@ -114,32 +112,30 @@ const Product = ({ product }: ProductProps) => {
             </div>
           ))}
           <div className="flex h-10 w-56 flex-col items-start">
-            <div className="text-right text-sm font-light leading-6 tracking-tighter text-gray-400">
+            <p className="text-right text-sm font-light leading-6 tracking-tighter text-gray-400">
               ¿Necesita más personalización?
-            </div>
-            <div className="cursor-pointer bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text text-right text-sm font-light leading-6 tracking-tighter text-transparent ">
+            </p>
+            <p className="cursor-pointer bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text text-right text-sm font-light leading-6 tracking-tighter text-transparent">
               Hablar con un ejecutivo
-            </div>
+            </p>
           </div>
         </div>
 
         {/* Action Button */}
         <div className="flex flex-col">
-          <div className="mb-10 mt-10 flex flex-row justify-between ">
-            <div className="text-customGray font-poppins text-2xl">TOTAL</div>
-            <div className="text-customGray text-2xl font-medium">
+          <div className="text-customGray mb-10 mt-10 flex flex-row justify-between font-medium">
+            <div className="text-2xl">TOTAL</div>
+            <div className="text-2xl">
               ${price}
-              <span className="text-customGray text-text font-medium">
-                + IVA
-              </span>
+              <span className="text-text">+ IVA</span>
             </div>
           </div>
           <Button className={buttonVariants({ variant: "primary" })}>
             Comprar
           </Button>
-          <div className="cursor-pointer bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text text-center text-sm font-light leading-6 tracking-tighter text-transparent">
+          <p className="cursor-pointer bg-custom-gradient bg-clip-text text-center text-sm font-light leading-6 tracking-tighter text-transparent">
             Imprimir presupuesto
-          </div>
+          </p>
         </div>
       </div>
     </div>

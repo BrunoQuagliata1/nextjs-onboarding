@@ -1,4 +1,5 @@
 import Logo from "./ui/logo";
+import Image from "next/image";
 
 const MobileNavbarFooter = () => {
   return (
@@ -31,13 +32,23 @@ const MobileNavbarFooter = () => {
 
 const NavbarFooter = () => {
   return (
-    <footer className=" bottom-0 w-full px-5 py-2.5">
+    <footer className="bottom-0 w-full px-5 py-2.5 max-sm:hidden">
       <hr className="my-2.5" />
       <div className="flex justify-between gap-5">
-        <div className="font-poppins text-lg leading-6 text-gray-custom">
+        <div className="text-lg leading-6 text-gray-custom">
           Copyright ©2024
         </div>
-        <div className="w-1.75 h-3.25 bg-gray-500"></div>
+        <div className="flex items-center">
+          <div className="mr-4 text-lg leading-6 text-gray-custom">
+            Powered by
+          </div>
+          <Image
+            src="/logos/logo-quaternary.svg"
+            alt="Quaternary Logo"
+            width={150}
+            height={300}
+          />
+        </div>
         <div className="flex flex-row gap-8 max-sm:gap-4">
           <div className="h-3 w-2 bg-[url('/footer/facebook.svg')]"></div>
           <div className="h-3 w-3 bg-[url('/footer/linkedin.svg')]"></div>
