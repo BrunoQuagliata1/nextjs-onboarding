@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
   [
-    "inline-flex items-center justify-center font-poppins font-medium transition ease-in-out duration-150",
+    "inline-flex items-center justify-center transition ease-in-out duration-150",
     "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-400",
     "disabled:opacity-50 disabled:pointer-events-none",
   ],
@@ -11,15 +11,14 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: [
-          "py-[9.5px] h-[36px] bg-gradient-to-r from-[#0F58B7] to-[#62D9FF]",
-          "text-white text-[16px] tracking-tighter shadow-lg rounded-md w-full",
+          "py-2 h-9 bg-custom-gradient",
+          "text-white tracking-tighter shadow-lg rounded-md w-full",
         ],
         help: [
-          "w-[223px]  h-[32px]",
-          "rounded-[10px]",
-          "bg-[#0F58B7] text-white text-[16px] tracking-tighter",
-          "justify-center items-center",
-          "rounded-md-[10px] shadow-[5px 5px 30px rgba(0, 0, 0, 0.1)]",
+          "w-56 h-8",
+          "rounded-[0.625rem]",
+          "bg-blue-600 text-white tracking-tighter",
+          "rounded-md-[0.625rem] shadow-lg",
         ],
       },
       size: {
@@ -44,7 +43,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (variant === "help") {
       return (
         <button ref={ref} className={buttonVariants({ variant })} {...props}>
-          <span className=" top-1 ml-3 h-2.5 w-2.5 rounded-full bg-white"></span>
+          <span className="top-1 ml-3 h-2.5 w-2.5 rounded-full bg-white"></span>
           <span className="w-full text-center">{children}</span>
         </button>
       );
