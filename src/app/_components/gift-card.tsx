@@ -24,10 +24,11 @@ const GiftCard: React.FC<GiftCardProps> = ({
     <Link href={`/search/${name}`} className="w-full">
       <div className="flex aspect-square flex-col gap-2 overflow-hidden rounded-lg shadow-lg">
         <div className="h-full w-full">
-          <div className="relative aspect-square h-[60%] w-full ">
-            <div className="absolute right-2 top-2 z-10 h-3 w-3.5 bg-[url('/card/favorite.svg')] bg-cover bg-center bg-no-repeat"></div>
-            <div className="absolute left-0 top-0 h-full w-full rounded-t-lg bg-[url('/img/flipa-box.svg')] bg-cover bg-center"></div>
+          <div className="relative aspect-square h-[60%] w-full">
+            <div className="absolute right-2 top-2 z-10 h-3 w-3.5 bg-[url('/card/favorite.svg')] bg-cover bg-center bg-no-repeat" />
+            <div className="absolute left-0 top-0 h-full w-full rounded-t-lg bg-[url('/img/flipa-box.svg')] bg-cover bg-center" />
           </div>
+
           <div className="p-2">
             <div className="flex w-full flex-row items-center justify-between ">
               <h3 className="overflow-hidden overflow-ellipsis whitespace-nowrap text-lg font-medium text-black max-sm:text-sm">

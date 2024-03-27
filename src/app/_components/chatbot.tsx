@@ -3,13 +3,11 @@ import Logo from "./ui/logo";
 
 const ChatBot = () => {
   return (
-    <div className="flex">
-      <div className=" mr-3 flex items-center justify-center">
+    <div className="flex items-center justify-center">
+      <div className="mr-3">
         <Button variant="help">¿Necesitás ayuda?</Button>
       </div>
-      <div className=" flex items-center justify-center rounded-xl shadow-md">
-        <Logo type="iso" alt="ISO Logo" width={14} />
-      </div>
+      <Logo type="iso" alt="ISO Logo" width={40} />
     </div>
   );
 };

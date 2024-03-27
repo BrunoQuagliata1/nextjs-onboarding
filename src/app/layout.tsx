@@ -32,7 +32,7 @@ export default function RootLayout({
           )}
         </div>
         <TRPCReactProvider>{children}</TRPCReactProvider>
-        <div className="fixed bottom-0 right-0 m-4 hidden sm:block">
+        <div className="fixed bottom-0 right-0 z-20 m-4 hidden sm:block">
           <ChatBot />
         </div>
         <div className="block sm:hidden">

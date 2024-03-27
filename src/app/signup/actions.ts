@@ -16,23 +16,18 @@ const signUpSchema = z.object({
 });
 
 export async function signUpUser(formData: FormData) {
-  const formDataObj: Record<string, string | undefined> = {};
+  const formDataObject: Record<string, string | undefined> = {};
   formData.forEach((value, key) => {
-    formDataObj[key] = typeof value === "string" ? value : undefined;
+    formDataObject[key] = typeof value === "string" ? value : undefined;
   });
 
   try {
-    const validatedData = signUpSchema.parse(formDataObj);
-    const { email, password, name, surname, companyName } = validatedData;
+    const { password, ...validatedData } = signUpSchema.parse(formDataObject);
+
     await prisma.user.create({
       data: {
-        email,
         password: bcrypt.hashSync(password, 10),
-        ...(name && { name }),
-        ...(surname && { surname }),
-        ...(companyName && {
-          companyName,
-        }),
+        ...validatedData,
       },
     });
     revalidatePath("/");

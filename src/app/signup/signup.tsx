@@ -4,7 +4,7 @@ import { Button, buttonVariants } from "../_components/ui/button";
 import { Input } from "../_components/ui/input";
 import { signUpUser } from "./actions";
 
-export function SignUp_() {
+export function SignUp() {
   return (
     <form
       action={signUpUser}
@@ -21,7 +21,7 @@ export function SignUp_() {
         ¿Ya tenés una cuenta?{" "}
         <a
           href="/api/auth/signin"
-          className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
+          className="w-56 font-poppins text-blue-600 hover:text-blue-700"
         >
           Inicia sesión aquí.
         </a>

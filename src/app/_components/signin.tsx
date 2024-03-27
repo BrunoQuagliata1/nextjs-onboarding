@@ -34,6 +34,7 @@ const SignIn = () => {
         <h4 className="text-2xl font-medium ">¡Hola, otra vez!</h4>
         <p>Por favor, confirma tu información para ingresar a Plan IT.</p>
       </div>
+
       <div className=" flex w-full flex-col gap-4">
         <Input
           type="email"
@@ -59,9 +60,11 @@ const SignIn = () => {
           </label>
         </div>
       </div>
+
       <Button className={buttonVariants({ variant: "primary" })}>
         INICIAR SESIÓN
       </Button>
+
       <div className="flex-col text-center text-gray-400">
         <p>No tienes una cuenta aún?</p>
         <a href="/signup" className="text-blue-600 hover:text-blue-700">

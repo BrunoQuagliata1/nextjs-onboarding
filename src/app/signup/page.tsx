@@ -1,5 +1,5 @@
 import Banner from "../_components/banner";
-import { SignUp_ } from "./signup";
+import { SignUp as SignUpForm } from "./signup";
 
 export default async function SignUp() {
   return (
@@ -8,7 +8,7 @@ export default async function SignUp() {
         <Banner />
       </div>
       <div className="flex w-full items-center justify-center sm:w-1/2">
-        <SignUp_ />
+        <SignUpForm />
       </div>
     </main>
   );

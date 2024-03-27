@@ -12,12 +12,12 @@ const buttonVariants = cva(
       variant: {
         primary: [
           "py-[9.5px] h-[36px] bg-gradient-to-r from-[#0F58B7] to-[#62D9FF]",
-          "text-white text-[16px] leading-[108%] tracking-tighter shadow-lg rounded-md w-full",
+          "text-white text-[16px] tracking-tighter shadow-lg rounded-md w-full",
         ],
         help: [
           "w-[223px]  h-[32px]",
           "rounded-[10px]",
-          "bg-[#0F58B7] text-white text-[16px] leading-[108%] tracking-tighter",
+          "bg-[#0F58B7] text-white text-[16px] tracking-tighter",
           "justify-center items-center",
           "rounded-md-[10px] shadow-[5px 5px 30px rgba(0, 0, 0, 0.1)]",
         ],
