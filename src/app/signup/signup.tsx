@@ -10,18 +10,16 @@ export function SignUp() {
       action={signUpUser}
       className="mx-12 flex w-full flex-col items-start gap-4 max-sm:mx-4 max-sm:w-[93%]"
     >
-      <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
-        ¡Bienvenido a Plan IT!
-      </h4>
-      <p className="mb-10 font-poppins font-normal text-black">
+      <h4 className="text-2xl font-medium">¡Bienvenido a Plan IT!</h4>
+      <p>
         Por favor, complete su información personal para crear un usuario
         propio.
       </p>
-      <p className="mb-10 font-poppins font-normal text-gray-500">
+      <p className=" text-gray-500">
         ¿Ya tenés una cuenta?{" "}
         <a
           href="/api/auth/signin"
-          className="w-56 font-poppins text-blue-600 hover:text-blue-700"
+          className="w-56 text-blue-600 hover:text-blue-700"
         >
           Inicia sesión aquí.
         </a>

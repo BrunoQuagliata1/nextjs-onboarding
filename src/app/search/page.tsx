@@ -10,6 +10,7 @@ const ProductsList = async () => {
   return products.map((product) => (
     <div key={product.id} className="flex justify-center">
       <Card
+        id={product.id}
         name={product.name}
         description={product.description ?? ""}
         calification={product.calification ?? ""}

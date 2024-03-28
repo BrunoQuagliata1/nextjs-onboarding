@@ -5,12 +5,18 @@ const logoPaths = {
   iso: "/logos/iso.svg",
   primary: "/logos/logo-primary.svg",
   secondary: "/logos/logo-secondary.svg",
+  tertiary: "/logos/logo-tertiary.svg",
+  quaternary: "/logos/logo-quaternary.svg",
 };
 
-const aspectRatios = {
+type LogoType = keyof typeof logoPaths;
+
+const aspectRatios: Record<LogoType, number> = {
   iso: 65 / 44,
   primary: 65 / 195,
   secondary: 65 / 195,
+  tertiary: 19 / 112,
+  quaternary: 19 / 112,
 };
 
 type LogoProps = {
