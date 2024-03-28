@@ -1,21 +1,21 @@
-import Logo from "./ui/logo";
 import Image from "next/legacy/image";
+
+import Logo from "./ui/logo";
 
 async function Banner() {
   return (
-    <div className="flex max-h-screen min-h-screen w-full flex-col items-center justify-between">
-      <div className="mt-32 ">
-        <div className="w-40">
-          <Logo type="secondary" alt="secondary Logo" />
-        </div>
-        <h1 className="mb-8 w-96 text-3xl font-semibold leading-[108%] -tracking-[1px] text-white">
-          Comienza a simplificar tus acciones, aquí.
+    <div className="top-0 flex w-full flex-col items-center justify-center">
+      <div className="-mt-40 flex w-1/2 flex-col gap-2 text-white max-lg:w-[90%]">
+        <Logo type="secondary" alt="secondary Logo" width={160} />
+        <h1 className="text-3xl font-semibold">
+          Comienza a simplificar tus acciones,
+          <span className="cursor-pointer text-blue-600"> aquí.</span>
         </h1>
-        <p className="w-96 text-lg font-normal leading-[108%] -tracking-[1px] text-white">
+        <p className="text-lg">
           En nuestra plataforma web vas a encontrar todo lo que estás buscando.
         </p>
       </div>
-      <div className="absolute !bottom-0 !top-auto -left-14 !h-[40%] !w-[40%]">
+      <div className="absolute -left-14 bottom-0 h-[40%] w-[40%]">
         <Image src="/banner/banner.svg" priority layout="fill" alt="banner" />
       </div>
     </div>

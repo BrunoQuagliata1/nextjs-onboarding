@@ -1,0 +1,38 @@
+{
+  "explorer.confirmDelete": false,
+  "editor.scrollBeyondLastLine": false,
+  "editor.wordWrap": "on",
+  "files.trimTrailingWhitespace": true,
+  "editor.tabSize": 2,
+  "markdown.preview.scrollPreviewWithEditor": false,
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "files.insertFinalNewline": true,
+  "markdown.preview.scrollEditorWithPreview": false,
+  "html.suggest.html5": false,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": 0,
+  "python.venvPath": "~/.virtualenvs",
+  "editor.autoIndent": "brackets",
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "cursor.chat.smoothStreaming": true,
+  "prettier.enableDebugLogs": true,
+  "prettier.endOfLine": "auto",
+  "prettier.vueIndentScriptAndStyle": true,
+  "workbench.settings.applyToAllProfiles": ["prettier.vueIndentScriptAndStyle"],
+  "vs-code-prettier-eslint.prettierLast": true
+}
