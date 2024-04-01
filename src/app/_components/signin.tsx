@@ -1,11 +1,10 @@
 "use client";
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 
-import { signIn } from "next-auth/react";
-
 import { Button, buttonVariants } from "./ui/button";
-import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
+import { Input } from "./ui/input";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");

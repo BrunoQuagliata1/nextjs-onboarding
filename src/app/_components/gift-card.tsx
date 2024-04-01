@@ -1,27 +1,19 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-import Link from "next/link";
-import Image from "next/image";
-
-interface GiftCardProps {
-  name: string;
-  description?: string;
-  calification?: string;
-  personalize?: string[] | string;
-  price: number;
-  restaurant?: string;
-  imageUrl?: string;
-}
+import { type GiftCardProps } from "~/types/types";
 
 const GiftCard: React.FC<GiftCardProps> = ({
+  id,
   name,
   calification,
   price,
   restaurant,
 }) => {
   return (
-    <Link href={`/search/${name}`} className="w-full">
+    <Link href={`/search/${name}?id=${id}`} className="w-full">
       <div className="flex aspect-square flex-col gap-2 overflow-hidden rounded-lg shadow-lg">
         <div className="h-full w-full">
           <div className="relative aspect-square h-[60%] w-full">

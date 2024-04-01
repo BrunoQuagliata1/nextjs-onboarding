@@ -4,8 +4,8 @@ import Logo from "./ui/logo";
 
 async function Banner() {
   return (
-    <div className="top-0 flex w-full flex-col items-center justify-center">
-      <div className="-mt-40 flex w-1/2 flex-col gap-2 text-white max-lg:w-[90%]">
+    <div className="flex w-full flex-col items-center justify-center">
+      <div className="-mt-40 flex w-1/2 flex-col items-start gap-2 text-white max-lg:w-[90%]">
         <Logo type="secondary" alt="secondary Logo" width={160} />
         <h1 className="text-3xl font-semibold">
           Comienza a simplificar tus acciones,

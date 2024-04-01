@@ -62,6 +62,7 @@ const config = {
         gray: {
           custom: "rgba(125, 125, 125, 0.5)",
         },
+        customGray: "rgba(68, 67, 67, 1)",
         blue: {
           600: "#0F58B7",
           700: "#0a3c7a",

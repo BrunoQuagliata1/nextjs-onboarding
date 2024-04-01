@@ -3,8 +3,10 @@ const config = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: true,
+    sourceType: "module",
+    ecmaVersion: "latest",
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "simple-import-sort"],
   extends: [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended-type-checked",
@@ -15,6 +17,8 @@ const config = {
     // Feel free to reconfigure them to your own preference.
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
 
     "@typescript-eslint/consistent-type-imports": [
       "warn",

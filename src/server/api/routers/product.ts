@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -37,6 +38,18 @@ export const productRouter = createTRPCRouter({
     const products = await ctx.db.product.findMany();
     return products;
   }),
+
+  getOne: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const product = await ctx.db.product.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+
+      return product;
+    }),
 
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";
