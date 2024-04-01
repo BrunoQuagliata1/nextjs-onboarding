@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 
 import { api } from "~/trpc/server";
+
 import { NavigationMenuDemo } from "../_components/filter";
 import Card from "../_components/gift-card";
 import { Skeleton } from "../_components/ui/skeleton";

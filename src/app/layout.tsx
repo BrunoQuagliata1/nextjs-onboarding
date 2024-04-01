@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
 
 import { TRPCReactProvider } from "~/trpc/react";
+
 import ChatBot from "./_components/chatbot";
 import { MobileFooter } from "./_components/footer";
 import { MobileNavbar } from "./_components/navbar";

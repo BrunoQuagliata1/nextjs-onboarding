@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import Logo from "./ui/logo";
 
 const MobileFooter = () => {
@@ -16,10 +18,15 @@ const MobileFooter = () => {
           PlanIT, 2021 - All rights reserved
         </div>
         <div className="flex flex-row gap-8 max-sm:gap-4">
-          <div className="h-3 w-2 bg-[url('/footer/facebook.svg')]" />
-          <div className="h-3 w-3 bg-[url('/footer/linkedin.svg')]" />
-          <div className="h-3 w-3.5 bg-[url('/footer/twitter.svg')]" />
-          <div className="h-[0.8rem] w-[0.8rem] bg-[url('/footer/instagram.svg')]" />
+          <Image src="/footer/facebook.svg" width={6} height={8} alt={""} />
+          <Image src="/footer/linkedin.svg" width={12} height={12} alt={""} />
+          <Image src="/footer/twitter.svg" width={12} height={14} alt={""} />
+          <Image
+            src="/footer/instagram.svg"
+            width={12.8}
+            height={12.8}
+            alt={""}
+          />
         </div>
       </div>
     </footer>
@@ -35,16 +42,19 @@ const FooterSearchProduct = () => {
           Copyright ©2024
         </div>
         <div className="flex items-center">
-          <div className="mr-4 text-lg leading-6 text-gray-custom">
+          <div className="mr-4 flex flex-row gap-2 text-lg leading-6 text-gray-custom">
             Powered by
-          </div>
-          <div className="relative -bottom-1">
             <Logo type="quaternary" alt="Quaternary Logo" width={120} />
           </div>
         </div>
-        <div className="flex flex-row gap-8">
-          <div className="h-3 w-3 bg-[url('/footer/linkedin.svg')]" />
-          <div className="h-[0.8rem] w-[0.8rem] bg-[url('/footer/instagram.svg')]" />
+        <div className="flex flex-row gap-4">
+          <Image src="/footer/linkedin.svg" width={12} height={12} alt={""} />
+          <Image
+            src="/footer/instagram.svg"
+            width={12.8}
+            height={12.8}
+            alt={""}
+          />
         </div>
       </div>
     </footer>

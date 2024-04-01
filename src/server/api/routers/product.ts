@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -46,6 +47,7 @@ export const productRouter = createTRPCRouter({
           id: input.id,
         },
       });
+
       return product;
     }),
 

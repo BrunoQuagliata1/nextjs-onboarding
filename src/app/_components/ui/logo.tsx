@@ -1,9 +1,10 @@
-import React from "react";
 import Image from "next/legacy/image";
+import React from "react";
 
 const logoPaths = {
   iso: "/logos/iso.svg",
   primary: "/logos/logo-primary.svg",
+
   secondary: "/logos/logo-secondary.svg",
   tertiary: "/logos/logo-tertiary.svg",
   quaternary: "/logos/logo-quaternary.svg",
@@ -36,9 +37,7 @@ const Logo: React.FC<LogoProps> = ({ type, alt, width = 485 }) => {
   const height = getHeight(aspectRatios[type], width);
 
   return (
-    <div className="logo-container">
-      <Image src={logoPath} priority alt={alt} width={width} height={height} />
-    </div>
+    <Image src={logoPath} priority alt={alt} width={width} height={height} />
   );
 };
 

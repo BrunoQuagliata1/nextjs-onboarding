@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
-
 import Link from "next/link";
+import React from "react";
 
 import Logo from "./ui/logo";
 import MenuIcon from "./ui/menu";
@@ -86,4 +85,4 @@ const MobileNavbar = React.forwardRef<HTMLButtonElement, NavBarProps>(
 
 MobileNavbar.displayName = "MobileNavbar";
 
-export { NavBar, MobileNavbar };
+export { MobileNavbar, NavBar };

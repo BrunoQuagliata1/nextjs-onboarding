@@ -1,20 +1,21 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import {
-  getServerSession,
   type DefaultSession,
+  getServerSession,
   type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
-import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+
 import { env } from "~/env";
 import { db } from "~/server/db";
 
 import {
-  findUserByEmail,
-  validatePassword,
-  validateCredentials,
   createSession,
+  findUserByEmail,
+  validateCredentials,
+  validatePassword,
 } from "./authUtils";
 
 /**
@@ -55,7 +56,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token.sessionToken) {
-        session.sessionToken = token.sessionToken.toString();
+        session.sessionToken = JSON.stringify(token.sessionToken);
       }
       return session;
     },
@@ -78,7 +79,7 @@ export const authOptions: NextAuthOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials, _req) {
         if (!credentials) return null;
         const { email, password } = validateCredentials(credentials);
         const user = await findUserByEmail(email);
