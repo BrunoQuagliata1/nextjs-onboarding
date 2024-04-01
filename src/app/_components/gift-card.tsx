@@ -3,16 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface GiftCardProps {
-  id: number;
-  name: string;
-  description?: string;
-  calification?: string;
-  personalize?: string[] | string;
-  price: number;
-  restaurant?: string;
-  imageUrl?: string;
-}
+import { type GiftCardProps } from "~/types/types";
 
 const GiftCard: React.FC<GiftCardProps> = ({
   id,

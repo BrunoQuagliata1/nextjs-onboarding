@@ -8,3 +8,14 @@ export interface ProductType {
   restaurant: string | null;
   imageUrl?: string | null;
 }
+
+export interface GiftCardProps {
+  id: number;
+  name: string;
+  description?: string;
+  calification?: string;
+  personalize?: string[] | string;
+  price: number;
+  restaurant?: string;
+  imageUrl?: string;
+}

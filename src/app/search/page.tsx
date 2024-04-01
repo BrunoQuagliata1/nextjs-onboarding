@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Suspense } from "react";
 
 import { api } from "~/trpc/server";
@@ -25,7 +27,7 @@ const ProductsList = async () => {
 
 export default async function Search() {
   return (
-    <main className="w-[calc(100vw - 10rem)] m-10 flex flex-col max-sm:m-10">
+    <main className="m-10 flex flex-col">
       <div className="flex w-60 flex-col gap-1 text-gray-900 max-sm:hidden">
         <h6 className="text-xl tracking-tight">Regalos</h6>
         <h4 className="text-3xl font-medium">Food Box</h4>
