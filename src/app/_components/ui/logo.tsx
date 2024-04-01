@@ -7,17 +7,31 @@ const logoPaths = {
   secondary: "/logos/logo-secondary.svg",
 };
 
+const aspectRatios = {
+  iso: 65 / 44,
+  primary: 65 / 195,
+  secondary: 65 / 195,
+};
+
 type LogoProps = {
   type: keyof typeof logoPaths;
   alt: string;
-  onClick?: React.MouseEventHandler<HTMLImageElement>; // Adding onClick prop
+  width?: number;
+  onClick?: React.MouseEventHandler<HTMLImageElement>;
 };
 
-const Logo: React.FC<LogoProps> = ({ type, alt }) => {
+const Logo: React.FC<LogoProps> = ({ type, alt, width = 485 }) => {
   const logoPath = logoPaths[type];
+
+  const getHeight = (aspectRatio: number, width: number) => {
+    return aspectRatio * width;
+  };
+
+  const height = getHeight(aspectRatios[type], width);
+
   return (
     <div className="logo-container">
-      <Image src={logoPath} priority alt={alt} width={485} height={190} />
+      <Image src={logoPath} priority alt={alt} width={width} height={height} />
     </div>
   );
 };
