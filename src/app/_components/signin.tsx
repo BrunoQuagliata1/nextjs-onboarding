@@ -1,11 +1,11 @@
 "use client";
+
 import { useState } from "react";
-
 import { signIn } from "next-auth/react";
-
 import { Button, buttonVariants } from "./ui/button";
 import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
+import { revalidatePath } from "next/cache";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +21,9 @@ const SignIn = () => {
     });
 
     if (result?.error) {
-      throw new Error("Error signing in");
+      console.error("Error signing in:", result);
+    } else {
+      console.log("Successfully signed in:", result);
     }
   };
 
@@ -30,13 +32,17 @@ const SignIn = () => {
       onSubmit={handleSubmit}
       className=" mx-12 flex w-full flex-col items-center gap-4 max-sm:mx-4 max-sm:w-[93%]"
     >
-      <div className="flex w-full flex-col gap-4">
-        <h4 className="text-2xl font-medium ">¡Hola, otra vez!</h4>
-        <p>Por favor, confirma tu información para ingresar a Plan IT.</p>
+      <div className="mx-2 w-full">
+        <h4 className="mb-7 font-poppins text-2xl font-medium text-black">
+          ¡Hola, otra vez!
+        </h4>
+        <p className="mb-10 font-poppins font-normal text-black">
+          Por favor, confirma tu información para ingresar a Plan IT.
+        </p>
       </div>
-
-      <div className=" flex w-full flex-col gap-4">
+      <div className="mx-2 w-full">
         <Input
+          className="mx-2 mb-4 w-full"
           type="email"
           placeholder="Email"
           name="email"
@@ -44,13 +50,14 @@ const SignIn = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
+          className="mb-4"
           type="password"
           placeholder="Contraseña"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="mb-5 space-x-2">
+        <div className="mb-10 flex space-x-2">
           <Checkbox id="terms" />
           <label
             htmlFor="terms"
@@ -60,14 +67,15 @@ const SignIn = () => {
           </label>
         </div>
       </div>
-
       <Button className={buttonVariants({ variant: "primary" })}>
         INICIAR SESIÓN
       </Button>
-
-      <div className="flex-col text-center text-gray-400">
+      <div className="columns-1 flex-col text-center font-poppins leading-[108%] text-gray-400">
         <p>No tienes una cuenta aún?</p>
-        <a href="/signup" className="text-blue-600 hover:text-blue-700">
+        <a
+          href="/signup"
+          className="w-56 font-poppins leading-[108%] text-blue-600 hover:text-blue-700"
+        >
           Registrate acá papaaa
         </a>
       </div>

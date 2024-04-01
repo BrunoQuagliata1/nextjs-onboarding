@@ -90,30 +90,29 @@ const config = {
         poppins: ["Poppins", "sans-serif"],
       },
       fontSize: {
-        "h1-desktop": ["70px", "130%"],
+        // Base font sizes
+        "h1-desktop": ["70px", "130%"], // 70px font size with 130% line-height
         "h1-mobile": ["36px", "130%"],
         h2: ["60px", { lineHeight: "130%", letterSpacing: "-1%" }],
-        h3: ["48px", "130%"],
-        h4: ["35px", "130%"],
-        h5: ["30px", "130%"],
-        h6: ["25px", "130%"],
-        button: ["20px", "130%"],
-        text: ["18px", "130%"],
-        "bold-text": ["16px", "130%"],
-        "small-text": ["14px", "130%"],
-        "tiny-text": ["12px", "130%"],
+        h3: ["48px", "130%"], // Assuming 130% line-height for consistency
+        h4: ["35px", "130%"], // Assuming 130% line-height for consistency
+        h5: ["30px", "130%"], // Assuming 130% line-height for consistency
+        h6: ["25px", "130%"], // Assuming 130% line-height for consistency
+        button: ["20px", "130%"], // Assuming 130% line-height for consistency
+        text: ["18px", "130%"], // Assuming 130% line-height for consistency
+        "bold-text": ["16px", "130%"], // Assuming 130% line-height for consistency
+        "small-text": ["14px", "130%"], // Assuming 130% line-height for consistency
+        "tiny-text": ["12px", "130%"], // Assuming 130% line-height for consistency
       },
       letterSpacing: {
-        tightest: "-1%",
+        tightest: "-1%", // Custom value, adjust based on requirements
       },
+      // If specific leading values needed, define them here
       lineHeight: {
-        custom: "130%",
+        custom: "130%", // Example custom line height
       },
       boxShadow: {
         custom: "2px 2px 10px rgba(0, 0, 0, 0.25)",
-      },
-      backgroundImage: {
-        "custom-gradient": "linear-gradient(to bottom right, #0F58B7, #62D9FF)",
       },
     },
   },

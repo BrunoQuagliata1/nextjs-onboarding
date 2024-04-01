@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
 
 import Link from "next/link";
-import Image from "next/image";
+import React from "react";
 
 interface GiftCardProps {
   name: string;
@@ -21,34 +20,27 @@ const GiftCard: React.FC<GiftCardProps> = ({
   restaurant,
 }) => {
   return (
-    <Link href={`/search/${name}`} className="w-full">
-      <div className="flex aspect-square flex-col gap-2 overflow-hidden rounded-lg shadow-lg">
-        <div className="h-full w-full">
-          <div className="relative aspect-square h-[60%] w-full">
-            <div className="absolute right-2 top-2 z-10 h-3 w-3.5 bg-[url('/card/favorite.svg')] bg-cover bg-center bg-no-repeat" />
-            <div className="absolute left-0 top-0 h-full w-full rounded-t-lg bg-[url('/img/flipa-box.svg')] bg-cover bg-center" />
-          </div>
-
-          <div className="p-2">
-            <div className="flex w-full flex-row items-center justify-between ">
-              <h3 className="overflow-hidden overflow-ellipsis whitespace-nowrap text-lg font-medium text-black max-sm:text-sm">
-                {name}
-              </h3>
-              <div className="flex items-center gap-1 max-sm:hidden">
-                <span className="bg-custom-gradient bg-clip-text text-sm text-transparent ">
-                  {calification}
-                </span>
-                <Image src="/card/star.svg" height={12} width={12} alt={""} />
-              </div>
-            </div>
-            <div className="overflow-ellipsis whitespace-nowrap text-lg text-gray-500 max-sm:hidden">
-              {restaurant}
-            </div>
-            <div className="bg-custom-gradient bg-clip-text text-lg text-transparent max-sm:text-sm">
-              ${price}
-            </div>
+    <Link href={`/search/${name}`}>
+      <div className="relative flex h-72 w-56 cursor-pointer flex-col items-start rounded-sm bg-white p-0 shadow-sm">
+        <div className="absolute h-[60.69%] w-full rounded-t-sm bg-[url('/img/flipa-box.svg')]"></div>
+        <div className="left-5.38% right-5.5% absolute top-[65.52%] flex w-full flex-row items-center justify-between p-0">
+          <h3 className="font-poppins text-lg font-medium leading-[108%] text-black">
+            {name}
+          </h3>
+          <div className=" bottom-4 right-0 flex items-center">
+            <span className="bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text font-poppins text-sm font-normal text-transparent">
+              {calification}
+            </span>
+            <img src="/card/star.svg" className="h-3 w-3 text-blue-500" />
           </div>
         </div>
+        <div className="left-5.38% right-5.38% absolute top-[75.17%] font-poppins text-lg font-normal leading-[108%] text-gray-500">
+          {restaurant}
+        </div>
+        <div className="left-5.38% right-6.73% absolute top-[87.59%] bg-gradient-to-r from-blue-700 to-blue-300 bg-clip-text font-poppins text-lg font-medium leading-[108%] text-transparent">
+          ${price}
+        </div>
+        <div className="top-7.21% absolute right-2 top-4 h-3 w-3.5 bg-[url('/card/favorite.svg')]"></div>
       </div>
     </Link>
   );
