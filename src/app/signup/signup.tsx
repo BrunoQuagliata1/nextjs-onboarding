@@ -1,13 +1,18 @@
 "use client";
 
+import { useFormState } from "react-dom";
+
+import { Alert, AlertDescription, AlertTitle } from "../_components/ui/alert";
 import { Button, buttonVariants } from "../_components/ui/button";
 import { Input } from "../_components/ui/input";
 import { signUpUser } from "./actions";
 
 export function SignUp() {
+  const [state, formAction] = useFormState(signUpUser, null);
+
   return (
     <form
-      action={signUpUser}
+      action={formAction}
       className="mx-12 flex w-full flex-col items-start gap-4 max-sm:mx-4 max-sm:w-[93%]"
     >
       <h4 className="text-2xl font-medium">¡Bienvenido a Plan IT!</h4>
@@ -38,6 +43,16 @@ export function SignUp() {
       <Button className={buttonVariants({ variant: "primary" })}>
         REGISTRARSE
       </Button>
+      {state?.show && (
+        <Alert
+          variant={state.variant === "error" ? "destructive" : state.variant}
+        >
+          <AlertTitle>Error al iniciar sesión!</AlertTitle>
+          <AlertDescription>
+            Por favor, verifica que tus credenciales sean correctas.
+          </AlertDescription>
+        </Alert>
+      )}
     </form>
   );
 }
