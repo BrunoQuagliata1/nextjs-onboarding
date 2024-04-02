@@ -2,7 +2,6 @@
 
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 const prisma = new PrismaClient();
@@ -15,7 +14,10 @@ const signUpSchema = z.object({
   companyName: z.string().optional(),
 });
 
-export async function signUpUser(formData: FormData) {
+export async function signUpUser(
+  state: null | { show: boolean; variant: "success" | "error" },
+  formData: FormData,
+): Promise<{ show: boolean; variant: "success" | "error" }> {
   const formDataObject: Record<string, string | undefined> = {};
   formData.forEach((value, key) => {
     formDataObject[key] = typeof value === "string" ? value : undefined;
@@ -30,9 +32,9 @@ export async function signUpUser(formData: FormData) {
         ...validatedData,
       },
     });
-    revalidatePath("/");
-    return { message: "User created successfully" };
+    return { show: true, variant: "success" };
   } catch (error) {
     console.error("Error during sign-up:", error);
+    return { show: true, variant: "error" };
   }
 }

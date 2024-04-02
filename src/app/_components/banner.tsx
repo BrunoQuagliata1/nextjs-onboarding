@@ -1,8 +1,9 @@
+"use client";
 import Image from "next/legacy/image";
 
 import Logo from "./ui/logo";
 
-async function Banner() {
+function Banner() {
   return (
     <div className="flex w-full flex-col items-center justify-center">
       <div className="-mt-40 flex w-1/2 flex-col items-start gap-2 text-white max-lg:w-[90%]">
